@@ -7,7 +7,7 @@ const app = require('./app');
 const DB = process.env.DATABASE.replace(
   '<PASSWORD>',
   process.env.DATABASE_PASSWORD,
-);
+).replace('<USERNAME>', process.env.DATABASE_USERNAME);
 
 mongoose.connect(DB).then(() => console.log('DB connection successful')); // Mongoose new version
 
