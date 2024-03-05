@@ -8,7 +8,7 @@ dotenv.config({ path: './config.env' });
 const DB = process.env.DATABASE.replace(
   '<PASSWORD>',
   process.env.DATABASE_PASSWORD,
-);
+).replace('<USERNAME>', process.env.DATABASE_USERNAME);
 
 mongoose.connect(DB).then(() => {
   console.log('DB Connection successful');
