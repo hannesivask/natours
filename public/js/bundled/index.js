@@ -686,12 +686,11 @@ if (loginForm) loginForm.addEventListener("submit", (e)=>{
 if (logoutBtn) logoutBtn.addEventListener("click", (0, _loginJs.logout));
 if (updateDataForm) updateDataForm.addEventListener("submit", (e)=>{
     e.preventDefault();
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    (0, _updateSettingsJs.updateSettings)({
-        name,
-        email
-    }, "data");
+    const form = new FormData();
+    form.append("name", document.getElementById("name").value);
+    form.append("email", document.getElementById("email").value);
+    form.append("photo", document.getElementById("photo").files[0]);
+    (0, _updateSettingsJs.updateSettings)(form, "data");
 });
 if (updatePasswordForm) updatePasswordForm.addEventListener("submit", async (e)=>{
     e.preventDefault();
