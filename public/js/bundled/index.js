@@ -666,12 +666,14 @@ var _webImmediateJs = require("core-js/modules/web.immediate.js");
 var _mapboxJs = require("./mapbox.js");
 var _loginJs = require("./login.js");
 var _updateSettingsJs = require("./updateSettings.js");
+var _stripe = require("./stripe");
 // DOM ELEMENTS
 const mapBox = document.getElementById("map");
 const loginForm = document.querySelector(".form--login");
 const logoutBtn = document.querySelector(".nav__el--logout");
 const updateDataForm = document.querySelector(".form-user-data");
 const updatePasswordForm = document.querySelector(".form-user-password");
+const bookBtn = document.getElementById("book-tour");
 // DELEGATION
 if (mapBox) {
     const locations = JSON.parse(mapBox.dataset.locations);
@@ -708,8 +710,13 @@ if (updatePasswordForm) updatePasswordForm.addEventListener("submit", async (e)=
     document.getElementById("password-confirm").value = "";
     document.querySelector(".btn--save-password").textContent = "Save password";
 });
+if (bookBtn) bookBtn.addEventListener("click", (e)=>{
+    e.target.textContent = "Processing...";
+    const tourID = e.target.dataset.tourId;
+    (0, _stripe.bookTour)(tourID);
+});
 
-},{"core-js/modules/es.regexp.flags.js":"fhmmk","core-js/modules/es.typed-array.set.js":"agDpR","core-js/modules/esnext.array.last-index.js":"hfk27","core-js/modules/esnext.array.last-item.js":"apDxD","core-js/modules/esnext.composite-key.js":"cr3b4","core-js/modules/esnext.composite-symbol.js":"ctRCV","core-js/modules/esnext.map.delete-all.js":"3bPRT","core-js/modules/esnext.map.every.js":"6brTU","core-js/modules/esnext.map.filter.js":"1FAfc","core-js/modules/esnext.map.find.js":"cXoeA","core-js/modules/esnext.map.find-key.js":"97bxd","core-js/modules/esnext.map.from.js":"7Se32","core-js/modules/esnext.map.group-by.js":"bwizQ","core-js/modules/esnext.map.includes.js":"kVU8K","core-js/modules/esnext.map.key-by.js":"9fr4n","core-js/modules/esnext.map.key-of.js":"9hzIC","core-js/modules/esnext.map.map-keys.js":"8Ushk","core-js/modules/esnext.map.map-values.js":"havT8","core-js/modules/esnext.map.merge.js":"5U72C","core-js/modules/esnext.map.of.js":"agLCv","core-js/modules/esnext.map.reduce.js":"lGrGL","core-js/modules/esnext.map.some.js":"ixNfY","core-js/modules/esnext.map.update.js":"1XhsC","core-js/modules/esnext.math.clamp.js":"bqTjj","core-js/modules/esnext.math.deg-per-rad.js":"cWiT2","core-js/modules/esnext.math.degrees.js":"4dMup","core-js/modules/esnext.math.fscale.js":"jHp5i","core-js/modules/esnext.math.iaddh.js":"g7t2Z","core-js/modules/esnext.math.imulh.js":"lXsr0","core-js/modules/esnext.math.isubh.js":"tNeij","core-js/modules/esnext.math.rad-per-deg.js":"jhyhT","core-js/modules/esnext.math.radians.js":"iSU8d","core-js/modules/esnext.math.scale.js":"ebTxW","core-js/modules/esnext.math.seeded-prng.js":"9OXS1","core-js/modules/esnext.math.signbit.js":"kBFeE","core-js/modules/esnext.math.umulh.js":"8A77A","core-js/modules/esnext.number.from-string.js":"5bzJx","core-js/modules/esnext.observable.js":"df9Ny","core-js/modules/esnext.promise.try.js":"6SYdb","core-js/modules/esnext.reflect.define-metadata.js":"e7Nd2","core-js/modules/esnext.reflect.delete-metadata.js":"7Ymsl","core-js/modules/esnext.reflect.get-metadata.js":"gvlul","core-js/modules/esnext.reflect.get-metadata-keys.js":"d4Zs5","core-js/modules/esnext.reflect.get-own-metadata.js":"hU7dP","core-js/modules/esnext.reflect.get-own-metadata-keys.js":"dr9Va","core-js/modules/esnext.reflect.has-metadata.js":"iaPlh","core-js/modules/esnext.reflect.has-own-metadata.js":"tF4LR","core-js/modules/esnext.reflect.metadata.js":"kZlKo","core-js/modules/esnext.set.add-all.js":"iYgab","core-js/modules/esnext.set.delete-all.js":"51Gfz","core-js/modules/esnext.set.difference.js":"7rs3b","core-js/modules/esnext.set.every.js":"kvleZ","core-js/modules/esnext.set.filter.js":"4g8tw","core-js/modules/esnext.set.find.js":"bOxr8","core-js/modules/esnext.set.from.js":"7GG4D","core-js/modules/esnext.set.intersection.js":"cfanq","core-js/modules/esnext.set.is-disjoint-from.js":"dAo41","core-js/modules/esnext.set.is-subset-of.js":"hCZYy","core-js/modules/esnext.set.is-superset-of.js":"3fnNq","core-js/modules/esnext.set.join.js":"4msQZ","core-js/modules/esnext.set.map.js":"diOlV","core-js/modules/esnext.set.of.js":"cqJ81","core-js/modules/esnext.set.reduce.js":"wqfKT","core-js/modules/esnext.set.some.js":"3tOke","core-js/modules/esnext.set.symmetric-difference.js":"Opygb","core-js/modules/esnext.set.union.js":"b5vw3","core-js/modules/esnext.string.at.js":"erxix","core-js/modules/esnext.string.code-points.js":"d7kWs","core-js/modules/esnext.symbol.dispose.js":"c6jXA","core-js/modules/esnext.symbol.observable.js":"a4PBk","core-js/modules/esnext.symbol.pattern-match.js":"e5XIN","core-js/modules/esnext.weak-map.delete-all.js":"c3D9k","core-js/modules/esnext.weak-map.from.js":"1HipN","core-js/modules/esnext.weak-map.of.js":"l17rr","core-js/modules/esnext.weak-set.add-all.js":"49sMd","core-js/modules/esnext.weak-set.delete-all.js":"fuq5f","core-js/modules/esnext.weak-set.from.js":"kR9OT","core-js/modules/esnext.weak-set.of.js":"57KjN","core-js/modules/web.immediate.js":"971QL","./mapbox.js":"7BAfo","./login.js":"bdMS7","./updateSettings.js":"2rqhs"}],"fhmmk":[function(require,module,exports) {
+},{"core-js/modules/es.regexp.flags.js":"fhmmk","core-js/modules/es.typed-array.set.js":"agDpR","core-js/modules/esnext.array.last-index.js":"hfk27","core-js/modules/esnext.array.last-item.js":"apDxD","core-js/modules/esnext.composite-key.js":"cr3b4","core-js/modules/esnext.composite-symbol.js":"ctRCV","core-js/modules/esnext.map.delete-all.js":"3bPRT","core-js/modules/esnext.map.every.js":"6brTU","core-js/modules/esnext.map.filter.js":"1FAfc","core-js/modules/esnext.map.find.js":"cXoeA","core-js/modules/esnext.map.find-key.js":"97bxd","core-js/modules/esnext.map.from.js":"7Se32","core-js/modules/esnext.map.group-by.js":"bwizQ","core-js/modules/esnext.map.includes.js":"kVU8K","core-js/modules/esnext.map.key-by.js":"9fr4n","core-js/modules/esnext.map.key-of.js":"9hzIC","core-js/modules/esnext.map.map-keys.js":"8Ushk","core-js/modules/esnext.map.map-values.js":"havT8","core-js/modules/esnext.map.merge.js":"5U72C","core-js/modules/esnext.map.of.js":"agLCv","core-js/modules/esnext.map.reduce.js":"lGrGL","core-js/modules/esnext.map.some.js":"ixNfY","core-js/modules/esnext.map.update.js":"1XhsC","core-js/modules/esnext.math.clamp.js":"bqTjj","core-js/modules/esnext.math.deg-per-rad.js":"cWiT2","core-js/modules/esnext.math.degrees.js":"4dMup","core-js/modules/esnext.math.fscale.js":"jHp5i","core-js/modules/esnext.math.iaddh.js":"g7t2Z","core-js/modules/esnext.math.imulh.js":"lXsr0","core-js/modules/esnext.math.isubh.js":"tNeij","core-js/modules/esnext.math.rad-per-deg.js":"jhyhT","core-js/modules/esnext.math.radians.js":"iSU8d","core-js/modules/esnext.math.scale.js":"ebTxW","core-js/modules/esnext.math.seeded-prng.js":"9OXS1","core-js/modules/esnext.math.signbit.js":"kBFeE","core-js/modules/esnext.math.umulh.js":"8A77A","core-js/modules/esnext.number.from-string.js":"5bzJx","core-js/modules/esnext.observable.js":"df9Ny","core-js/modules/esnext.promise.try.js":"6SYdb","core-js/modules/esnext.reflect.define-metadata.js":"e7Nd2","core-js/modules/esnext.reflect.delete-metadata.js":"7Ymsl","core-js/modules/esnext.reflect.get-metadata.js":"gvlul","core-js/modules/esnext.reflect.get-metadata-keys.js":"d4Zs5","core-js/modules/esnext.reflect.get-own-metadata.js":"hU7dP","core-js/modules/esnext.reflect.get-own-metadata-keys.js":"dr9Va","core-js/modules/esnext.reflect.has-metadata.js":"iaPlh","core-js/modules/esnext.reflect.has-own-metadata.js":"tF4LR","core-js/modules/esnext.reflect.metadata.js":"kZlKo","core-js/modules/esnext.set.add-all.js":"iYgab","core-js/modules/esnext.set.delete-all.js":"51Gfz","core-js/modules/esnext.set.difference.js":"7rs3b","core-js/modules/esnext.set.every.js":"kvleZ","core-js/modules/esnext.set.filter.js":"4g8tw","core-js/modules/esnext.set.find.js":"bOxr8","core-js/modules/esnext.set.from.js":"7GG4D","core-js/modules/esnext.set.intersection.js":"cfanq","core-js/modules/esnext.set.is-disjoint-from.js":"dAo41","core-js/modules/esnext.set.is-subset-of.js":"hCZYy","core-js/modules/esnext.set.is-superset-of.js":"3fnNq","core-js/modules/esnext.set.join.js":"4msQZ","core-js/modules/esnext.set.map.js":"diOlV","core-js/modules/esnext.set.of.js":"cqJ81","core-js/modules/esnext.set.reduce.js":"wqfKT","core-js/modules/esnext.set.some.js":"3tOke","core-js/modules/esnext.set.symmetric-difference.js":"Opygb","core-js/modules/esnext.set.union.js":"b5vw3","core-js/modules/esnext.string.at.js":"erxix","core-js/modules/esnext.string.code-points.js":"d7kWs","core-js/modules/esnext.symbol.dispose.js":"c6jXA","core-js/modules/esnext.symbol.observable.js":"a4PBk","core-js/modules/esnext.symbol.pattern-match.js":"e5XIN","core-js/modules/esnext.weak-map.delete-all.js":"c3D9k","core-js/modules/esnext.weak-map.from.js":"1HipN","core-js/modules/esnext.weak-map.of.js":"l17rr","core-js/modules/esnext.weak-set.add-all.js":"49sMd","core-js/modules/esnext.weak-set.delete-all.js":"fuq5f","core-js/modules/esnext.weak-set.from.js":"kR9OT","core-js/modules/esnext.weak-set.of.js":"57KjN","core-js/modules/web.immediate.js":"971QL","./mapbox.js":"7BAfo","./login.js":"bdMS7","./updateSettings.js":"2rqhs","./stripe":"hRFWM"}],"fhmmk":[function(require,module,exports) {
 "use strict";
 var global = require("c6bf5eee641c0bcc");
 var DESCRIPTORS = require("32574bd865b8e6e5");
@@ -6542,11 +6549,8 @@ const displayMap = (locations)=>{
             -25
         ]
     });
-    L.tileLayer("https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.{ext}", {
-        minZoom: 0,
-        maxZoom: 20,
-        attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        ext: "png"
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
     const points = [];
     locations.forEach((loc)=>{
@@ -6557,9 +6561,7 @@ const displayMap = (locations)=>{
         L.marker([
             loc.coordinates[1],
             loc.coordinates[0]
-        ], {
-            icon
-        }).addTo(map).bindPopup(`<p>Day ${loc.day}: ${loc.description}</p>`, {
+        ]).addTo(map).bindPopup(`<p>Day ${loc.day}: ${loc.description}</p>`, {
             autoClose: false
         }).openPopup();
     });
@@ -6638,7 +6640,7 @@ const logout = async ()=>{
     }
 };
 
-},{"axios":"ln9zj","@parcel/transformer-js/src/esmodule-helpers.js":"gOvLg","./alerts":"euiBC"}],"ln9zj":[function(require,module,exports) {
+},{"axios":"ln9zj","./alerts":"euiBC","@parcel/transformer-js/src/esmodule-helpers.js":"gOvLg"}],"ln9zj":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>(0, _axiosJsDefault.default));
@@ -11053,6 +11055,28 @@ const updateSettings = async (data, type)=>{
     }
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gOvLg","axios":"ln9zj","./alerts":"euiBC"}]},["e99n0","dDfKB"], "dDfKB", "parcelRequire11c7")
+},{"axios":"ln9zj","./alerts":"euiBC","@parcel/transformer-js/src/esmodule-helpers.js":"gOvLg"}],"hRFWM":[function(require,module,exports) {
+/* eslint-disable */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "bookTour", ()=>bookTour);
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _alerts = require("./alerts");
+const bookTour = async (tourID)=>{
+    try {
+        const stripe = Stripe("pk_test_51OwOgR01ARg8RM0plvYaFgCaMGqYqznF3H0AQ49TupD3x1FbZW5DrTWCIm0NKqLkIqs4gRLdEtgfPQthzdVSCNbq00D37GPDcS");
+        // 1. get checkout session from API
+        const session = await (0, _axiosDefault.default)(`http://127.0.0.1:3000/api/v1/bookings/checkout-session/${tourID}`);
+        // 2. Create checkout form + charge credit card
+        await stripe.redirectToCheckout({
+            sessionId: session.data.session.id
+        });
+    } catch (err) {
+        console.log(err);
+        (0, _alerts.showAlert)("error", err);
+    }
+};
+
+},{"axios":"ln9zj","@parcel/transformer-js/src/esmodule-helpers.js":"gOvLg","./alerts":"euiBC"}]},["e99n0","dDfKB"], "dDfKB", "parcelRequire11c7")
 
 //# sourceMappingURL=index.js.map

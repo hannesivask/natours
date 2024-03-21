@@ -12,23 +12,15 @@ export const displayMap = (locations) => {
     popupAnchor: [0, -25],
   });
 
-  L.tileLayer(
-    'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.{ext}',
-    {
-      minZoom: 0,
-      maxZoom: 20,
-      attribution:
-        '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      ext: 'png',
-    },
-  ).addTo(map);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(map);
 
   const points = [];
-
   locations.forEach((loc) => {
     points.push([loc.coordinates[1], loc.coordinates[0]]);
-
-    L.marker([loc.coordinates[1], loc.coordinates[0]], { icon })
+    L.marker([loc.coordinates[1], loc.coordinates[0]])
       .addTo(map)
       .bindPopup(`<p>Day ${loc.day}: ${loc.description}</p>`, {
         autoClose: false,
@@ -37,7 +29,6 @@ export const displayMap = (locations) => {
   });
 
   const bounds = L.latLngBounds(points).pad(0.5);
-
   map.fitBounds(bounds);
 
   map.scrollWheelZoom.disable();
