@@ -6,7 +6,7 @@ export const hideAlert = () => {
 };
 
 // Type is either success or error
-export const showAlert = (type, msg) => {
+export const showAlert = (type, msg, time = 7) => {
   hideAlert();
 
   const markup = `<div class='alert alert--${type}'>${msg}</div>`;
@@ -14,5 +14,5 @@ export const showAlert = (type, msg) => {
 
   window.setTimeout(() => {
     hideAlert();
-  }, 5000);
+  }, time * 1000);
 };
