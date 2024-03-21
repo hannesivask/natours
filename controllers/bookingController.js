@@ -20,16 +20,21 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     client_reference_id: req.params.tourId,
     line_items: [
       {
-        quantity: 1,
+        description: `${tour.summary}`,
         price_data: {
-          currency: 'usd',
           unit_amount: tour.price * 100,
+          currency: 'usd',
           product_data: {
-            name: `${tour.name} Tour`,
-            description: tour.summary,
-            images: [` http://localhost:3000/img/tours/${tour.imageCover}`],
+            name: tour.name,
+            description: `${tour.summary}`,
+            images: [
+              `${req.protocol}://${req.get('host')}/img/tours/${
+                tour.imageCover
+              }`,
+            ],
           },
         },
+        quantity: 1,
       },
     ],
   });
