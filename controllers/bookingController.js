@@ -5,7 +5,6 @@ const Booking = require('../models/bookingModel');
 // const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 const factory = require('./handlerFactory');
-const User = require('../models/userModel');
 
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
   // 1. Get currently booked tour
